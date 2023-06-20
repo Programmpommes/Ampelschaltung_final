@@ -46,7 +46,7 @@ public class Main extends Application {
             primaryStage.show();
 
 
-            //simulateMouseClick(button);
+
         }
 
         private void simulateMouseClick(Button button) {
