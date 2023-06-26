@@ -29,34 +29,29 @@ public class Beweglich extends Application {
 
         Pane root = new Pane();
 
-        // Lade das Bild
-        Image image = new Image("pfad/zum/dein-bild.png");
 
-        // Erstelle ein ImageView, um das Bild anzuzeigen
+        Image image = new Image("pfad");
+
+
         ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(200); // Breite des Bildes anpassen
-        imageView.setPreserveRatio(true); // Beibehaltung des Seitenverhältnisses des Bildes
+        imageView.setFitWidth(200);
+        imageView.setPreserveRatio(true);
 
-        // Füge das ImageView dem Pane hinzu
+
         root.getChildren().add(imageView);
 
-        // Erstelle eine Timeline-Animation für die Bewegung des Bildes
+
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, event -> {
-                    // Initialposition des Bildes
                     imageView.setTranslateX(0);
                     imageView.setTranslateY(0);
                 }),
                 new KeyFrame(Duration.seconds(2), event -> {
-                    // Zielposition des Bildes
                     imageView.setTranslateX(200);
                     imageView.setTranslateY(200);
                 })
         );
-        timeline.setCycleCount(Animation.INDEFINITE); // Wiederhole die Animation unendlich oft
-        timeline.setAutoReverse(true); // Reverse die Animation nach jedem Durchlauf
 
-        // Starte die Animation
         timeline.play();
 
 
