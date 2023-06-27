@@ -76,12 +76,13 @@ public class Ampel extends Application {
 
         StackPane root = new StackPane(circle, circle2);
         //StackPane groot = new StackPane(circle2);
-        Scene scene = new Scene(root, 1000, 1000);
+        Scene scene = new Scene(root, 500, 500);
 
         //Scene scene = new Scene(button, 200, 100);
 
         primaryStage.setTitle("Klick Klack");
         primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
 
 
