@@ -9,7 +9,7 @@ public class Highscore {
     ResultSet rs = st.executeQuery();
 
     while(rs.next()){
-      System.out.Println(rs.getString(columnindex:1)+"\t"+rs.getString(columnindex2));
+      System.out.Println(rs.getString(1)+"\t"+rs.getString(2));
     }
 
     con.close();
