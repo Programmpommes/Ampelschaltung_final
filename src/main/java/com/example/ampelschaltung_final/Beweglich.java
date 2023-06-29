@@ -30,7 +30,7 @@ public class Beweglich extends Application {
         Pane root = new Pane();
 
 
-        Image image = new Image("pfad");
+        Image image = new Image("src/main/resources/kisspng-car-ferrari-testarossa-laferrari-ferrari-275-lamborghini-top-view-5b1e13020f49b8.4702320015286976020626.jpg");
 
 
         ImageView imageView = new ImageView(image);
