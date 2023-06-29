@@ -30,7 +30,7 @@ public class Beweglich extends Application {
         Pane root = new Pane();
 
 
-        Image image = new Image("src/main/resources/kisspng-car-ferrari-testarossa-laferrari-ferrari-275-lamborghini-top-view-5b1e13020f49b8.4702320015286976020626.jpg");
+        Image image = new Image("Ferrari.jpg");
 
 
         ImageView imageView = new ImageView(image);
@@ -57,7 +57,7 @@ public class Beweglich extends Application {
          Pane groot = new Pane();
 
 
-        Image image1 = new Image("src/main/resources/kisspng-car-computer-icons-grey-car-top-view-icon-5ab0c1e90a67a3.2467640815215334170426.jpg");
+        Image image1 = new Image("graues Auto.jpg");
 
 
         ImageView imageVieh = new ImageView(image1);
