@@ -50,6 +50,33 @@ public class Beweglich extends Application {
                     imageView.setTranslateX(200);
                     imageView.setTranslateY(200);
                 })
+
+
+
+        
+         Pane groot = new Pane();
+
+
+        Image image1 = new Image("src/main/resources/kisspng-car-computer-icons-grey-car-top-view-icon-5ab0c1e90a67a3.2467640815215334170426.jpg");
+
+
+        ImageView imageView = new ImageView(image1);
+        imageView.setFitWidth(200);
+        imageView.setPreserveRatio(true);
+
+
+        groot.getChildren().add(imageView);
+
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, event -> {
+                    imageView.setTranslateX(0);
+                    imageView.setTranslateY(0);
+                }),
+                new KeyFrame(Duration.seconds(2), event -> {
+                    imageView.setTranslateX(200);
+                    imageView.setTranslateY(200);
+                })
         );
 
         timeline.play();
