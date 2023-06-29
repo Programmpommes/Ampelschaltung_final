@@ -77,10 +77,38 @@ public class Beweglich extends Application {
                     imageVieh.setTranslateX(200);
                     imageVieh.setTranslateY(200);
                 })
+
+
+          Pane groot1 = new Pane();
+
+
+        Image image2 = new Image("aston-martin-amr22.jpg");
+
+
+        ImageView imageViech = new ImageView(image2);
+        imageViech.setFitWidth(200);
+        imageViech.setPreserveRatio(true);
+
+
+        groot1.getChildren().add(imageViech);
+
+
+        Timeline timeline2 = new Timeline(
+                new KeyFrame(Duration.ZERO, event2 -> {
+                    imageViech.setTranslateX(0);
+                    imageViech.setTranslateY(0);
+                }),
+                new KeyFrame(Duration.seconds(2), event2 -> {
+                    imageViech.setTranslateX(200);
+                    imageViech.setTranslateY(200);
+                })
+
+            
         );
 
         timeline.play();
         timeline1.play();
+        timeline3.play();
 
 
     }
