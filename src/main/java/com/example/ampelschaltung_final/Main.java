@@ -11,7 +11,12 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class Main extends Ampel {
+    Ampel op= new Ampel();
 
+
+    Main(){
+        //op.start(stage primaryStage);
+    }
 
 
 
@@ -74,7 +79,8 @@ public class Main extends Ampel {
 //            button.fireEvent(event);
 //        }
 
-        public static void main(String[] args) {
-            launch(args);
-        }
+    public static void main(String[] args) {
+        launch(args);
     }
+
+}

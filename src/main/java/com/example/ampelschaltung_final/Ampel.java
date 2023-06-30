@@ -20,6 +20,8 @@ public class Ampel extends Application {
         Button button = new Button("Drück mich");
 
 
+
+
 //        button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 //            MouseButton mouseButton = event.getButton();
 //            if (mouseButton == MouseButton.PRIMARY) {
@@ -44,6 +46,9 @@ public class Ampel extends Application {
         Circle circle = new Circle(20, Color.GREEN);
         circle.setTranslateX(150);
         circle.setTranslateY(100);
+
+
+
 
         Circle circle2 = new Circle(20, Color.GREEN);
         circle2.setLayoutX(50);
@@ -78,12 +83,14 @@ public class Ampel extends Application {
         //StackPane groot = new StackPane(circle2);
         Scene scene = new Scene(root, 500, 500);
 
-        //Scene scene = new Scene(button, 200, 100);
+        //Scene scen = new Scene(button, 100, 100);
 
         primaryStage.setTitle("Klick Klack");
         primaryStage.setScene(scene);
+        //primaryStage.setScene(scen);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+
 
 
     }
