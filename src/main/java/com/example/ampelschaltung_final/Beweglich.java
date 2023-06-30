@@ -46,69 +46,93 @@ public class Beweglich extends Application {
                     imageView.setTranslateX(0);
                     imageView.setTranslateY(0);
                 }),
-                new KeyFrame(Duration.seconds(2), event -> {
-                    imageView.setTranslateX(200);
-                    imageView.setTranslateY(200);
-                })
-
-
-
-        
-         Pane groot = new Pane();
-
-
-        Image image1 = new Image("graues Auto.jpg");
-
-
-        ImageView imageVieh = new ImageView(image1);
-        imageVieh.setFitWidth(200);
-        imageVieh.setPreserveRatio(true);
-
-
-        groot.getChildren().add(imageVieh);
-
-
-        Timeline timeline1 = new Timeline(
-                new KeyFrame(Duration.ZERO, event1 -> {
-                    imageVieh.setTranslateX(0);
-                    imageVieh.setTranslateY(0);
+                new KeyFrame(Duration.seconds(1), event -> {
+                    imageView.setTranslateX(10);
+                    imageView.setTranslateY(0);
                 }),
-                new KeyFrame(Duration.seconds(2), event1 -> {
-                    imageVieh.setTranslateX(200);
-                    imageVieh.setTranslateY(200);
-                })
-
-
-          Pane groot1 = new Pane();
-
-
-        Image image2 = new Image("aston-martin-amr22.jpg");
-
-
-        ImageView imageViech = new ImageView(image2);
-        imageViech.setFitWidth(200);
-        imageViech.setPreserveRatio(true);
-
-
-        groot1.getChildren().add(imageViech);
-
-
-        Timeline timeline2 = new Timeline(
-                new KeyFrame(Duration.ZERO, event2 -> {
-                    imageViech.setTranslateX(0);
-                    imageViech.setTranslateY(0);
+                new KeyFrame(Duration.seconds(1), event -> {
+                    imageView.setTranslateX(20);
+                    imageView.setTranslateY(0);
                 }),
-                new KeyFrame(Duration.seconds(2), event2 -> {
-                    imageViech.setTranslateX(200);
-                    imageViech.setTranslateY(200);
+                new KeyFrame(Duration.seconds(1), event -> {
+                    imageView.setTranslateX(30);
+                    imageView.setTranslateY(0);
+                }),
+                new KeyFrame(Duration.seconds(1), event -> {
+                    imageView.setTranslateX(40);
+                    imageView.setTranslateY(0);
                 })
 
-            
+
+
+
+
+
         );
+       // (KeyFrame)
+
+
+
+//        Pane groot = new Pane();
+//
+//        Image image1 = new Image("graues Auto.jpg");
+//
+//
+//        ImageView imageVieh = new ImageView(image1);
+//        imageVieh.setFitWidth(200);
+//        imageVieh.setPreserveRatio(true);
+//
+//
+//        groot.getChildren().add(imageVieh);
+//
+//
+//        Timeline timeline1 = new Timeline(
+//                new KeyFrame(Duration.ZERO, event1 -> {
+//                    imageVieh.setTranslateX(0);
+//                    imageVieh.setTranslateY(0);
+//                }),
+//                new KeyFrame(Duration.seconds(2), event1 -> {
+//                    imageVieh.setTranslateX(200);
+//                    imageVieh.setTranslateY(200);
+//                }));
+//        (KeyFrame)
+//
+//
+//                Pane groot1 = new Pane();
+//
+//        Image image2 = new Image("aston-martin-amr22.jpg");
+//
+//
+//        ImageView imageViech = new ImageView(image2);
+//        imageViech.setFitWidth(200);
+//        imageViech.setPreserveRatio(true);
+//
+//
+//        groot1.getChildren().add(imageViech);
+//
+//
+//        Timeline timeline2 = new Timeline(
+//                new KeyFrame(Duration.ZERO, event2 -> {
+//                    imageViech.setTranslateX(0);
+//                    imageViech.setTranslateY(0);
+//                }),
+//                new KeyFrame(Duration.seconds(2), event2 -> {
+//                    imageViech.setTranslateX(200);
+//                    imageViech.setTranslateY(200);
+//                })
+//
+//
+//        );
 
         timeline.play();
-        timeline1.play();
-        timeline3.play();
+        //timeline1.play();
+        //timeline3.play();
+
+        Scene scene = new Scene(root, 500, 500);
+        primaryStage.setTitle("Klick Klack");
+        primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
+        primaryStage.show();
 
 
     }
