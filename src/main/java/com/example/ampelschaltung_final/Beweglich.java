@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,7 +15,7 @@ import javafx.util.Duration;
 public class Beweglich extends Application {
     Ampel ampel1 = new Ampel();
     public Boolean halt = false;
-
+    Pane groot = new Pane();
 
     public void stopGo() {
         if (ampel1.istRot1 || ampel1.istRot2) {
@@ -27,7 +28,7 @@ public class Beweglich extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        Pane root = new Pane();
+
 
 
         Image image = new Image("Ferrari.jpg");
@@ -38,7 +39,7 @@ public class Beweglich extends Application {
         imageView.setPreserveRatio(true);
 
 
-        root.getChildren().add(imageView);
+        groot.getChildren().add(imageView);
 
 
         Timeline timeline = new Timeline(
@@ -128,12 +129,18 @@ public class Beweglich extends Application {
         //timeline1.play();
         //timeline3.play();
 
-        Scene scene = new Scene(root, 500, 500);
-        primaryStage.setTitle("Klick Klack");
-        primaryStage.setScene(scene);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
+        //Scene scene1 = new Scene(groot, 500, 500);
 
 
+//        primaryStage.setTitle("Beweg");
+//        primaryStage.setScene(scene1);
+//        primaryStage.setFullScreen(true);
+//        primaryStage.show();
+
+
+    }
+
+    public Parent getRoot() {
+        return groot;
     }
 }

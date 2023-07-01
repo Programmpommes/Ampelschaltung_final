@@ -7,20 +7,44 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Ampel {
-    Ampel op= new Ampel();
+public class Main extends Application {
+    //Ampel op = new Ampel();
 
 
-    Main(){
-        //op.start(stage primaryStage);
+
+    @Override
+
+    public void start(Stage primaryStage) {
+
+        Ampel firstClass = new Ampel();
+        firstClass.start(primaryStage);
+        Scene firstScene = new Scene(firstClass.getRoot());
+
+        Beweglich secondClass = new Beweglich();
+        secondClass.start(primaryStage);
+        Scene secondScene = new Scene(secondClass.getRoot());
+
+
+        primaryStage.setTitle("Main App");
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(600);
+        primaryStage.setFullScreen(true);
+
+        VBox container = new VBox();
+        container.getChildren().addAll(firstClass.getRoot(), secondClass.getRoot());
+
+        Scene mainScene = new Scene(container);
+        primaryStage.setScene(mainScene);
+        primaryStage.show();
     }
 
-
-
-//        @Override
 //        public void start(Stage primaryStage) {
 //            Button button = new Button("Drück mich");
 //

@@ -1,5 +1,6 @@
 package com.example.ampelschaltung_final;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
@@ -13,11 +14,13 @@ import javafx.scene.shape.Circle;
 public class Ampel extends Application {
     Boolean istRot1 = false;
     Boolean istRot2 = false;
+    StackPane root = new StackPane();
 
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage1) {
         Button button = new Button("Drück mich");
+        //Beweglich bewegen = new Beweglich();
 
 
 
@@ -79,19 +82,30 @@ public class Ampel extends Application {
             }
         });
 
-        StackPane root = new StackPane(circle, circle2);
+
+
+        //bewegen.start(primaryStage1);
+
+        //StackPane root = new StackPane(circle, circle2);
+        root.getChildren().add(circle);
+        root.getChildren().add(circle2);
         //StackPane groot = new StackPane(circle2);
-        Scene scene = new Scene(root, 500, 500);
+        //Scene scene = new Scene(root, 500, 500);
 
         //Scene scen = new Scene(button, 100, 100);
 
-        primaryStage.setTitle("Klick Klack");
-        primaryStage.setScene(scene);
-        //primaryStage.setScene(scen);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
+//        primaryStage1.setTitle("Klick Klack");
+//        primaryStage1.setScene(scene);
+//        //primaryStage.setScene(scen);
+//        primaryStage1.setFullScreen(true);
+//        primaryStage1.show();
 
 
 
+    }
+
+    public Parent getRoot() {
+
+        return root;
     }
 }
