@@ -4,12 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,12 +32,14 @@ public class Main extends Application {
         Scene secondScene = new Scene(secondClass.getRoot());
 
 
-        primaryStage.setTitle("Main App");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
+        primaryStage.setTitle("Ampelschaltung");
+        primaryStage.setWidth(500);
+        primaryStage.setHeight(500);
         primaryStage.setFullScreen(true);
 
-        VBox container = new VBox();
+        TilePane container = new TilePane();
+
+        //HBox container = new HBox();
         container.getChildren().addAll(firstClass.getRoot(), secondClass.getRoot());
 
         Scene mainScene = new Scene(container);
