@@ -31,11 +31,14 @@ public class Beweglich extends Application {
     Auto Audi = new Auto();
     private static final int MOVE_DISTANCE = 10;
     private static final int MOVE_INTERVAL_MS = 100;
+    static final int WIDTH = 800;
+    static final int HEIGHT = 600;
+    Pane pane = new Pane();
 
 
-    Beweglich() {
-
-    }
+//    Beweglich() {
+//
+//    }
 
 
 //    public void stopGo() {
@@ -69,6 +72,10 @@ public class Beweglich extends Application {
 
 
         groot.getChildren().add(imageView);
+//        Pane pane = new Pane();
+//        pane.getChildren().add(imageView);
+
+
         //groot.getChildren().add(imageView2);
         //groot.getChildren().add(imageView3);
 
@@ -185,7 +192,7 @@ public class Beweglich extends Application {
         //timeline1.play();
         //timeline3.play();
 
-//        Scene scene1 = new Scene(groot, 500, 500);
+//        Scene scene1 = new Scene(pane, HEIGHT, WIDTH);
 //
 //
 //        primaryStage.setTitle("Beweg");
@@ -209,4 +216,5 @@ public class Beweglich extends Application {
     public Parent getRoot() {
         return groot;
     }
+
 }

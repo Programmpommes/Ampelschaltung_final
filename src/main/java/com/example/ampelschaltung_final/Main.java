@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class Main extends Application {
     //Ampel op = new Ampel();
+    Beweglich beweg=new Beweglich();
 
 
 
@@ -41,6 +42,8 @@ public class Main extends Application {
 
         //HBox container = new HBox();
         container.getChildren().addAll(firstClass.getRoot(), secondClass.getRoot());
+        //container.getChildren().add(secondClass.pane);
+
 
         Scene mainScene = new Scene(container);
         primaryStage.setScene(mainScene);
