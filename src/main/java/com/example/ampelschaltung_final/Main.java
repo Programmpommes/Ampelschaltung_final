@@ -29,7 +29,11 @@ public class Main extends Application {
         Scene firstScene = new Scene(firstClass.getRoot());
 
         Beweglich secondClass = new Beweglich();
-        secondClass.start(primaryStage);
+
+        //for (int i=0; i<10; i++) {
+            secondClass.start(primaryStage);
+        //}
+        //secondClass.startMovement();
         Scene secondScene = new Scene(secondClass.getRoot());
 
 

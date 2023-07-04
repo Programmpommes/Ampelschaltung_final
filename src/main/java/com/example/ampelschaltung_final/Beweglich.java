@@ -5,20 +5,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -69,9 +59,24 @@ public class Beweglich extends Application {
         imageView3.setPreserveRatio(true);
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
+        imageView.setLayoutX(100);
+        imageView.setLayoutY(100);
 
+        javafx.animation.KeyFrame keyFrame = new javafx.animation.KeyFrame(
+                javafx.util.Duration.millis(100),
+                event -> {
+                    // Bewege das ImageView nach rechts
+                    imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
+                }
+        );
 
+        javafx.animation.Timeline timeline = new javafx.animation.Timeline(keyFrame);
+        timeline.setCycleCount(javafx.animation.Animation.INDEFINITE);
+        timeline.play();
         groot.getChildren().add(imageView);
+
+
+
 //        Pane pane = new Pane();
 //        pane.getChildren().add(imageView);
 
@@ -94,14 +99,14 @@ public class Beweglich extends Application {
 //        timeline.setCycleCount(Animation.INDEFINITE);
 //        timeline.play();
 
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
-            // Bewege das ImageView nach rechts
-            imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
-        })
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+//        Timeline timeline = new Timeline(
+//                new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+//            // Bewege das ImageView nach rechts
+//            imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
+//        })
+//        );
+//        timeline.setCycleCount(Animation.INDEFINITE);
+//        timeline.play();
 
 
 
@@ -203,15 +208,26 @@ public class Beweglich extends Application {
 
     }
 
-    public void update() {
-        Ferrari.x = Ferrari.x + 1;
-        Ferrari.x = Ferrari.x + 1;
-        Aston.x = Aston.x + 1;
-        Aston.y = Aston.y + 1;
-        Audi.x = Audi.x + 1;
-        Audi.y = Audi.y + 1;
+    private ImageView imageView;
+    //private static final int MOVE_DISTANCE = 10;
+
+    public void ImageMovement(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public void startMovement() {
 
     }
+
+//    public void update() {
+//        Ferrari.x = Ferrari.x + 1;
+//        Ferrari.x = Ferrari.x + 1;
+//        Aston.x = Aston.x + 1;
+//        Aston.y = Aston.y + 1;
+//        Audi.x = Audi.x + 1;
+//        Audi.y = Audi.y + 1;
+//
+//    }
 
     public Parent getRoot() {
         return groot;
