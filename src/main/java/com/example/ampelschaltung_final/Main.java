@@ -23,15 +23,19 @@ import java.io.IOException;
 
 public class Main extends Application {
     //Ampel op = new Ampel();
-    Beweglich beweg=new Beweglich();
+    Beweglich beweg = new Beweglich();
     Boolean istRot1 = false;
     Boolean istRot2 = false;
     Pane root = new Pane();
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
-    private static final int MOVE_DISTANCE = 10;
-    private static final int MOVE_INTERVAL_MS = 100;
-
+    private static final int WIDTH = 1920;
+    private static final int HEIGHT = 1080;
+    private static final int MOVE_DISTANCE = 1;
+    private static final int MOVE_INTERVAL_MS = 10;
+    Auto Ferrari = new Auto();
+    Auto Aston = new Auto();
+    Auto Audi = new Auto();
+    Timeline timeline = new Timeline();
+    private ImageView imageView;
 
 
     @Override
@@ -72,15 +76,14 @@ public class Main extends Application {
 
         Circle circle2 = new Circle(20, Color.GREEN);
         circle2.setLayoutX(500);
-        circle2.setLayoutY(450);
+        circle2.setLayoutY(650);
 
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MouseButton mouseButton = event.getButton();
             if (mouseButton == MouseButton.PRIMARY) {
                 circle.setFill(Color.RED);
                 istRot1 = true;
-            }
-            else if (mouseButton == MouseButton.SECONDARY) {
+            } else if (mouseButton == MouseButton.SECONDARY) {
                 circle.setFill(Color.GREEN);
                 istRot1 = false;
             }
@@ -91,8 +94,7 @@ public class Main extends Application {
             if (mouseButton == MouseButton.PRIMARY) {
                 circle2.setFill(Color.RED);
                 istRot2 = true;
-            }
-            else if (mouseButton == MouseButton.SECONDARY) {
+            } else if (mouseButton == MouseButton.SECONDARY) {
                 circle2.setFill(Color.GREEN);
                 istRot2 = false;
             }
@@ -101,43 +103,123 @@ public class Main extends Application {
         root.getChildren().add(circle);
         root.getChildren().add(circle2);
 
-        Image image = new Image("Ferrari.jpg");
-        ImageView imageView = new ImageView(image);
+        //Image image = new Image("Ferrari.jpg");
+        //ImageView imageView = new ImageView();
+
+        //Ferrari
+        imageView = new ImageView();
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
         imageView.setPreserveRatio(true);
 
         root.getChildren().add(imageView);
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
-            // Bewege das ImageView nach rechts
-            imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
+        startTimeline();
+        haltStop();
 
-            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
-            if (imageView.getLayoutX() > WIDTH) {
-                imageView.setLayoutX(-imageView.getFitWidth());
-            }
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
 
-        Scene scene =new Scene(root, WIDTH, HEIGHT);
+
+
+//        if(istRot1=true){
+//            startTimeline();
+//        }
+
+        Circle stop1 = new Circle(10, Color.BLACK);
+        stop1.setTranslateX(500);
+        stop1.setTranslateY(500);
+
+//        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+//            // Bewege das ImageView nach rechts
+//            imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
+//
+//            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+//            if (imageView.getLayoutX() > WIDTH) {
+//                imageView.setLayoutX(-imageView.getFitWidth());
+//            }
+//        }));
+
+//        timeline.setCycleCount(Timeline.INDEFINITE);
+//        timeline.play();
+
+
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
-
-
-
-
-
-
-
-
-
     }
 
 
+    public void startTimeline() {
+        Image image = new Image("Ferrari.jpg");
+        //ImageView imageView = new ImageView(image);
+        imageView.setImage(image);
+        imageView.setLayoutX(0);
+        imageView.setLayoutY(100);
+
+        if (shouldStartTimeline()) {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+                // Bewege das ImageView nach rechts
+                imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
+
+                // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+                if (imageView.getLayoutX() > WIDTH) {
+                    imageView.setLayoutX(-imageView.getFitWidth());
+                }
+            }));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+        }
+
+//        while(istRot1=true){
+//            timeline.stop();
+//        }
+//        while(istRot1=false){
+//            timeline.play();
+//        }
+
+
+//        for(int i=0; i<999; i++) {
+//            if (istRot1) {
+//                timeline.stop();
+//            }
+//            if (!istRot1) {
+//                timeline.play();
+//            }
+//        }
+
+//        public void handle() {
+//
+//        }
+    }
+
+    private boolean shouldStartTimeline() {
+        boolean startTimeline = false;
+        if (istRot1) {
+            startTimeline = false;
+        }
+        if(!istRot1){
+            startTimeline =true;
+        }
+
+
+        return startTimeline;
+    }
+
+    private void haltStop(){
+        if(istRot1){
+            timeline.stop();
+        }
+    }
+
+//    public void update(){
+//        if(istRot1){
+//
+//        }
+//        if(!istRot1){
+//            timeline.play();
+//        }
+//    }
 
 
 //        public void start(Stage primaryStage) {
