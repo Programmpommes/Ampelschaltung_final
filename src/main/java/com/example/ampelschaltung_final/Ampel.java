@@ -50,14 +50,10 @@ public class Ampel extends Application {
         circle.setTranslateX(500);
         circle.setTranslateY(500);
 
-
-
-
         Circle circle2 = new Circle(20, Color.GREEN);
         circle2.setLayoutX(500);
         circle2.setLayoutY(450);
 
-        // Add a mouse click event handler to the circle
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MouseButton mouseButton = event.getButton();
             if (mouseButton == MouseButton.PRIMARY) {
