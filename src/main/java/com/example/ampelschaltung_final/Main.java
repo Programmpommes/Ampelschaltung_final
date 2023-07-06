@@ -37,6 +37,7 @@ public class Main extends Application {
     Auto Audi = new Auto();
     Timeline timeline = new Timeline();
     private ImageView imageView;
+    Circle circle = new Circle(20, Color.GREEN);
 
 
     @Override
@@ -87,7 +88,7 @@ public class Main extends Application {
         rectangle2.setFill(Color.YELLOW); 
 
         
-        Circle circle = new Circle(20, Color.GREEN);
+
         circle.setTranslateX(600);
         circle.setTranslateY(400);
 
@@ -189,6 +190,17 @@ public class Main extends Application {
             }));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
+
+            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                MouseButton mouseButton = event.getButton();
+                if (mouseButton == MouseButton.PRIMARY) {
+                    circle.setFill(Color.RED);
+                    timeline.stop();
+                } else if (mouseButton == MouseButton.SECONDARY) {
+                    circle.setFill(Color.GREEN);
+                    timeline.play();
+                }
+            });
         }
 
 //        while(istRot1=true){
