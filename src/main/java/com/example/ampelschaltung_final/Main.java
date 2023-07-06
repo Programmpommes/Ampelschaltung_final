@@ -11,6 +11,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -70,13 +71,29 @@ public class Main extends Application {
 //        Scene mainScene = new Scene(container);
 //        primaryStage.setScene(mainScene);
 //        primaryStage.show();
+
+         Rectangle rectangle = new Rectangle();
+        rectangle.setHeight(110);
+        rectangle.setWidth(5000);
+        rectangle.setX(0);
+        rectangle.setY(445);
+        rectangle.setFill(Color.GREY); 
+        
+        Rectangle rectangle2 = new Rectangle();
+        rectangle2.setHeight(5);
+        rectangle2.setWidth(5000);
+        rectangle2.setX(0);
+        rectangle2.setY(495);
+        rectangle2.setFill(Color.YELLOW); 
+
+        
         Circle circle = new Circle(20, Color.GREEN);
-        circle.setTranslateX(500);
-        circle.setTranslateY(500);
+        circle.setTranslateX(600);
+        circle.setTranslateY(400);
 
         Circle circle2 = new Circle(20, Color.GREEN);
-        circle2.setLayoutX(500);
-        circle2.setLayoutY(650);
+        circle2.setLayoutX(1200);
+        circle2.setLayoutY(400);
 
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MouseButton mouseButton = event.getButton();
@@ -102,6 +119,9 @@ public class Main extends Application {
 
         root.getChildren().add(circle);
         root.getChildren().add(circle2);
+        root.getChildren().add(rectangle);
+        root.getChildren().add(rectangle2);
+
 
         //Image image = new Image("Ferrari.jpg");
         //ImageView imageView = new ImageView();
@@ -155,7 +175,7 @@ public class Main extends Application {
         //ImageView imageView = new ImageView(image);
         imageView.setImage(image);
         imageView.setLayoutX(0);
-        imageView.setLayoutY(100);
+        imageView.setLayoutY(505);
 
         if (shouldStartTimeline()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
