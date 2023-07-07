@@ -141,8 +141,8 @@ public class Main extends Application {
 
         //Aston
         imageView2 = new ImageView();
-        imageView2.setFitWidth(100);
-        imageView2.setFitHeight(100);
+        imageView2.setFitWidth(110);
+        imageView2.setFitHeight(110);
         imageView2.setPreserveRatio(true);
         root.getChildren().add(imageView2);
         startTimeline2();
@@ -151,9 +151,7 @@ public class Main extends Application {
 
 
 
-//        if(istRot1=true){
-//            startTimeline();
-//        }
+
 
         Circle stop1 = new Circle(10, Color.BLACK);
         stop1.setTranslateX(500);
@@ -228,8 +226,8 @@ public class Main extends Application {
                 imageView2.setLayoutX(imageView2.getLayoutX() - MOVE_DISTANCE);
 
                 // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
-                if (imageView2.getLayoutX() > WIDTH) {
-                    imageView2.setLayoutX(-imageView2.getFitWidth());
+                if (imageView2.getLayoutX() == 0) {
+                    imageView2.setLayoutX(1920);
                 }
             }));
             timeline2.setCycleCount(Timeline.INDEFINITE);
@@ -310,30 +308,7 @@ public class Main extends Application {
 //
 //        }
 
-//        private void simulateMouseClick(Button button) {
-//            MouseEvent event = new MouseEvent(
-//                    MouseEvent.MOUSE_CLICKED,
-//                    button.getLayoutX() + button.getWidth() / 2,
-//                    button.getLayoutY() + button.getHeight() / 2,
-//                    button.getLayoutX() + button.getWidth() / 2,
-//                    button.getLayoutY() + button.getHeight() / 2,
-//                    MouseButton.PRIMARY,
-//                    1,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    false,
-//                    null
-//            );
-//
-//            button.fireEvent(event);
-//        }
+
 
     public static void main(String[] args) {
         launch(args);
