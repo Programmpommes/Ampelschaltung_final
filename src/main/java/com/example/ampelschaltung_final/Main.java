@@ -36,8 +36,12 @@ public class Main extends Application {
     Auto Aston = new Auto();
     Auto Audi = new Auto();
     Timeline timeline = new Timeline();
+    Timeline timeline2 = new Timeline();
     private ImageView imageView;
+    private ImageView imageView2;
     Circle circle = new Circle(20, Color.GREEN);
+    Circle circle2 = new Circle(20, Color.GREEN);
+
 
 
     @Override
@@ -92,9 +96,9 @@ public class Main extends Application {
         circle.setTranslateX(600);
         circle.setTranslateY(400);
 
-        Circle circle2 = new Circle(20, Color.GREEN);
+
         circle2.setLayoutX(1200);
-        circle2.setLayoutY(400);
+        circle2.setLayoutY(600);
 
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MouseButton mouseButton = event.getButton();
@@ -132,11 +136,17 @@ public class Main extends Application {
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
         imageView.setPreserveRatio(true);
-
         root.getChildren().add(imageView);
-
         startTimeline();
-        haltStop();
+
+        //Aston
+        imageView2 = new ImageView();
+        imageView2.setFitWidth(100);
+        imageView2.setFitHeight(100);
+        imageView2.setPreserveRatio(true);
+        root.getChildren().add(imageView2);
+        startTimeline2();
+
 
 
 
@@ -176,9 +186,9 @@ public class Main extends Application {
         //ImageView imageView = new ImageView(image);
         imageView.setImage(image);
         imageView.setLayoutX(0);
-        imageView.setLayoutY(505);
+        imageView.setLayoutY(450);
 
-        if (shouldStartTimeline()) {
+        //if (shouldStartTimeline()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
                 // Bewege das ImageView nach rechts
                 imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
@@ -201,28 +211,41 @@ public class Main extends Application {
                     timeline.play();
                 }
             });
-        }
+        //}
+    }
 
-//        while(istRot1=true){
-//            timeline.stop();
-//        }
-//        while(istRot1=false){
-//            timeline.play();
-//        }
+    public void startTimeline2() {
+        Image image2 = new Image("aston-martin-amr22.jpg");
+        //ImageView imageView = new ImageView(image);
+        imageView2.setImage(image2);
+        imageView2.setLayoutX(1920);
+        imageView2.setLayoutY(505);
+        imageView2.setRotate(180);
 
+        //if (shouldStartTimeline()) {
+            Timeline timeline2 = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+                // Bewege das ImageView nach rechts
+                imageView2.setLayoutX(imageView2.getLayoutX() - MOVE_DISTANCE);
 
-//        for(int i=0; i<999; i++) {
-//            if (istRot1) {
-//                timeline.stop();
-//            }
-//            if (!istRot1) {
-//                timeline.play();
-//            }
-//        }
+                // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+                if (imageView2.getLayoutX() > WIDTH) {
+                    imageView2.setLayoutX(-imageView2.getFitWidth());
+                }
+            }));
+            timeline2.setCycleCount(Timeline.INDEFINITE);
+            timeline2.play();
 
-//        public void handle() {
-//
-//        }
+            circle2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                MouseButton mouseButton = event.getButton();
+                if (mouseButton == MouseButton.PRIMARY) {
+                    circle2.setFill(Color.RED);
+                    timeline2.stop();
+                } else if (mouseButton == MouseButton.SECONDARY) {
+                    circle2.setFill(Color.GREEN);
+                    timeline2.play();
+                }
+            });
+        //}
     }
 
     private boolean shouldStartTimeline() {
