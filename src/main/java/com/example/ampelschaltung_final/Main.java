@@ -23,8 +23,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class Main extends Application {
-    //Ampel op = new Ampel();
-    Beweglich beweg = new Beweglich();
     Boolean istRot1 = false;
     Boolean istRot2 = false;
     Pane root = new Pane();
@@ -77,7 +75,7 @@ public class Main extends Application {
 //        primaryStage.setScene(mainScene);
 //        primaryStage.show();
 
-         Rectangle rectangle = new Rectangle();
+        Rectangle rectangle = new Rectangle();
         rectangle.setHeight(110);
         rectangle.setWidth(5000);
         rectangle.setX(0);
@@ -89,15 +87,35 @@ public class Main extends Application {
         rectangle2.setWidth(5000);
         rectangle2.setX(0);
         rectangle2.setY(495);
-        rectangle2.setFill(Color.YELLOW); 
+        rectangle2.setFill(Color.YELLOW);
 
-        
+        Rectangle rectangle3 = new Rectangle();
+        rectangle3.setHeight(110);
+        rectangle3.setWidth(1500);
+        rectangle3.setX(210);
+        rectangle3.setY(500);
+        rectangle3.setRotate(90);
+        rectangle3.setFill(Color.GREY);
 
-        circle.setTranslateX(600);
+        Rectangle rectangle4 = new Rectangle();
+        rectangle4.setHeight(5);
+        rectangle4.setWidth(1500);
+        rectangle4.setX(210);
+        rectangle4.setY(500);
+        rectangle4.setRotate(90);
+        rectangle4.setFill(Color.YELLOW);
+
+        Rectangle rectangle5 = new Rectangle();
+        rectangle5.setHeight(110);
+        rectangle5.setWidth(110);
+        rectangle5.setX(905);
+        rectangle5.setY(445);
+        rectangle5.setFill(Color.GREY);
+
+        circle.setTranslateX(850);
         circle.setTranslateY(400);
 
-
-        circle2.setLayoutX(1200);
+        circle2.setLayoutX(1050);
         circle2.setLayoutY(600);
 
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -126,6 +144,9 @@ public class Main extends Application {
         root.getChildren().add(circle2);
         root.getChildren().add(rectangle);
         root.getChildren().add(rectangle2);
+        root.getChildren().add(rectangle3);
+        root.getChildren().add(rectangle4);
+        root.getChildren().add(rectangle5);
 
 
         //Image image = new Image("Ferrari.jpg");
