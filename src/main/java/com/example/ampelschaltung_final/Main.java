@@ -44,9 +44,14 @@ public class Main extends Application {
     private ImageView imageView4;
     Circle circle = new Circle(20, Color.GREEN);
     Circle circle2 = new Circle(20, Color.GREEN);
+    Circle circle3 = new Circle(20, Color.GREEN);
+    Circle circle4 = new Circle(20, Color.GREEN);
     Random auto = new Random();
     List<String> imagePaths = new ArrayList<>();
     String randomImagePath;
+    String randomImagePath2;
+    String randomImagePath3;
+    String randomImagePath4;
 
 
 
@@ -129,11 +134,17 @@ public class Main extends Application {
         rectangle5.setY(445);
         rectangle5.setFill(Color.GREY);
 
-        circle.setTranslateX(850);
+        circle.setTranslateX(800);
         circle.setTranslateY(400);
 
-        circle2.setLayoutX(1050);
+        circle2.setLayoutX(1100);
         circle2.setLayoutY(600);
+
+        circle3.setLayoutX(850);
+        circle3.setLayoutY(400);
+
+        circle4.setLayoutX(1050);
+        circle4.setLayoutY(600);
 
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             MouseButton mouseButton = event.getButton();
@@ -157,8 +168,32 @@ public class Main extends Application {
             }
         });
 
+        circle3.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MouseButton mouseButton = event.getButton();
+            if (mouseButton == MouseButton.PRIMARY) {
+                circle3.setFill(Color.RED);
+                istRot2 = true;
+            } else if (mouseButton == MouseButton.SECONDARY) {
+                circle3.setFill(Color.GREEN);
+                istRot2 = false;
+            }
+        });
+
+        circle4.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MouseButton mouseButton = event.getButton();
+            if (mouseButton == MouseButton.PRIMARY) {
+                circle4.setFill(Color.RED);
+                istRot2 = true;
+            } else if (mouseButton == MouseButton.SECONDARY) {
+                circle4.setFill(Color.GREEN);
+                istRot2 = false;
+            }
+        });
+
         root.getChildren().add(circle);
         root.getChildren().add(circle2);
+        root.getChildren().add(circle3);
+        root.getChildren().add(circle4);
         root.getChildren().add(rectangle);
         root.getChildren().add(rectangle2);
         root.getChildren().add(rectangle3);
@@ -169,7 +204,7 @@ public class Main extends Application {
         //Image image = new Image("Ferrari.jpg");
         //ImageView imageView = new ImageView();
 
-        //Ferrari
+        //links nach rechts
         imageView = new ImageView();
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);
@@ -177,13 +212,29 @@ public class Main extends Application {
         root.getChildren().add(imageView);
         startTimeline();
 
-        //Aston
+        //rechts nach links
         imageView2 = new ImageView();
         imageView2.setFitWidth(110);
         imageView2.setFitHeight(110);
         imageView2.setPreserveRatio(true);
         root.getChildren().add(imageView2);
         startTimeline2();
+
+        //oben nach unten
+        imageView3 = new ImageView();
+        imageView3.setFitWidth(110);
+        imageView3.setFitHeight(110);
+        imageView3.setPreserveRatio(true);
+        root.getChildren().add(imageView3);
+        startTimeline3();
+
+        //unten nach oben
+        imageView4 = new ImageView();
+        imageView4.setFitWidth(110);
+        imageView4.setFitHeight(110);
+        imageView4.setPreserveRatio(true);
+        root.getChildren().add(imageView4);
+        startTimeline4();
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -228,7 +279,8 @@ public class Main extends Application {
     }
 
     public void startTimeline2() {
-        Image image2 = new Image("Ferrari.jpg");
+        randomImagePath2 = imagePaths.get(auto.nextInt(imagePaths.size()));
+        Image image2 = new Image(randomImagePath2);
         //ImageView imageView = new ImageView(image);
         imageView2.setImage(image2);
         imageView2.setLayoutX(1920);
@@ -256,6 +308,76 @@ public class Main extends Application {
             } else if (mouseButton == MouseButton.SECONDARY) {
                 circle2.setFill(Color.GREEN);
                 timeline2.play();
+            }
+        });
+        //}
+    }
+
+    public void startTimeline3() {
+        randomImagePath3 = imagePaths.get(auto.nextInt(imagePaths.size()));
+        Image image3 = new Image(randomImagePath3);
+        //ImageView imageView = new ImageView(image);
+        imageView3.setImage(image3);
+        imageView3.setLayoutX(880);
+        imageView3.setLayoutY(0);
+        imageView3.setRotate(90);
+
+        //if (shouldStartTimeline()) {
+        Timeline timeline3 = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+            // Bewege das ImageView nach rechts
+            imageView3.setLayoutY(imageView3.getLayoutY() + MOVE_DISTANCE);
+
+            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+            if (imageView3.getLayoutY() == 1150) {
+                imageView3.setLayoutY(-10);
+            }
+        }));
+        timeline3.setCycleCount(Timeline.INDEFINITE);
+        timeline3.play();
+
+        circle3.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MouseButton mouseButton = event.getButton();
+            if (mouseButton == MouseButton.PRIMARY) {
+                circle3.setFill(Color.RED);
+                timeline3.stop();
+            } else if (mouseButton == MouseButton.SECONDARY) {
+                circle3.setFill(Color.GREEN);
+                timeline3.play();
+            }
+        });
+        //}
+    }
+
+    public void startTimeline4() {
+        randomImagePath4 = imagePaths.get(auto.nextInt(imagePaths.size()));
+        Image image4 = new Image(randomImagePath4);
+        //ImageView imageView = new ImageView(image);
+        imageView4.setImage(image4);
+        imageView4.setLayoutX(935);
+        imageView4.setLayoutY(1150);
+        imageView4.setRotate(270);
+
+        //if (shouldStartTimeline()) {
+        Timeline timeline4 = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+            // Bewege das ImageView nach rechts
+            imageView4.setLayoutY(imageView4.getLayoutY() - MOVE_DISTANCE);
+
+            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+            if (imageView4.getLayoutY() == 0) {
+                imageView4.setLayoutY(1150);
+            }
+        }));
+        timeline4.setCycleCount(Timeline.INDEFINITE);
+        timeline4.play();
+
+        circle4.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MouseButton mouseButton = event.getButton();
+            if (mouseButton == MouseButton.PRIMARY) {
+                circle4.setFill(Color.RED);
+                timeline4.stop();
+            } else if (mouseButton == MouseButton.SECONDARY) {
+                circle4.setFill(Color.GREEN);
+                timeline4.play();
             }
         });
         //}
