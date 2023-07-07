@@ -46,6 +46,7 @@ public class Main extends Application {
     Circle circle2 = new Circle(20, Color.GREEN);
     Random auto = new Random();
     List<String> imagePaths = new ArrayList<>();
+    String randomImagePath;
 
 
 
@@ -60,6 +61,7 @@ public class Main extends Application {
         imagePaths.add("graues Auto.jpg");
         imagePaths.add("oldtimer.jpg");
         imagePaths.add("opel.jpg");
+
 
 //        Ampel firstClass = new Ampel();
 //        firstClass.start(primaryStage);
@@ -192,7 +194,8 @@ public class Main extends Application {
 
 
     public void startTimeline() {
-        Image image = new Image("Ferrari.jpg");
+        randomImagePath = imagePaths.get(auto.nextInt(imagePaths.size()));
+        Image image = new Image(randomImagePath);
         //ImageView imageView = new ImageView(image);
         imageView.setImage(image);
         imageView.setLayoutX(0);
@@ -225,7 +228,7 @@ public class Main extends Application {
     }
 
     public void startTimeline2() {
-        Image image2 = new Image("aston-martin-amr22.jpg");
+        Image image2 = new Image("Ferrari.jpg");
         //ImageView imageView = new ImageView(image);
         imageView2.setImage(image2);
         imageView2.setLayoutX(1920);
