@@ -37,9 +37,10 @@ public class Main extends Application {
     Timeline timeline2 = new Timeline();
     private ImageView imageView;
     private ImageView imageView2;
+    private ImageView imageView3;
+    private ImageView imageView4;
     Circle circle = new Circle(20, Color.GREEN);
     Circle circle2 = new Circle(20, Color.GREEN);
-
 
 
     @Override
@@ -80,8 +81,8 @@ public class Main extends Application {
         rectangle.setWidth(5000);
         rectangle.setX(0);
         rectangle.setY(445);
-        rectangle.setFill(Color.GREY); 
-        
+        rectangle.setFill(Color.GREY);
+
         Rectangle rectangle2 = new Rectangle();
         rectangle2.setHeight(5);
         rectangle2.setWidth(5000);
@@ -168,30 +169,6 @@ public class Main extends Application {
         root.getChildren().add(imageView2);
         startTimeline2();
 
-
-
-
-
-
-
-        Circle stop1 = new Circle(10, Color.BLACK);
-        stop1.setTranslateX(500);
-        stop1.setTranslateY(500);
-
-//        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
-//            // Bewege das ImageView nach rechts
-//            imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
-//
-//            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
-//            if (imageView.getLayoutX() > WIDTH) {
-//                imageView.setLayoutX(-imageView.getFitWidth());
-//            }
-//        }));
-
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.play();
-
-
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
@@ -208,28 +185,28 @@ public class Main extends Application {
         imageView.setLayoutY(450);
 
         //if (shouldStartTimeline()) {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
-                // Bewege das ImageView nach rechts
-                imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+            // Bewege das ImageView nach rechts
+            imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
 
-                // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
-                if (imageView.getLayoutX() > WIDTH) {
-                    imageView.setLayoutX(-imageView.getFitWidth());
-                }
-            }));
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
+            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+            if (imageView.getLayoutX() > WIDTH) {
+                imageView.setLayoutX(-imageView.getFitWidth());
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
 
-            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                MouseButton mouseButton = event.getButton();
-                if (mouseButton == MouseButton.PRIMARY) {
-                    circle.setFill(Color.RED);
-                    timeline.stop();
-                } else if (mouseButton == MouseButton.SECONDARY) {
-                    circle.setFill(Color.GREEN);
-                    timeline.play();
-                }
-            });
+        circle.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MouseButton mouseButton = event.getButton();
+            if (mouseButton == MouseButton.PRIMARY) {
+                circle.setFill(Color.RED);
+                timeline.stop();
+            } else if (mouseButton == MouseButton.SECONDARY) {
+                circle.setFill(Color.GREEN);
+                timeline.play();
+            }
+        });
         //}
     }
 
@@ -242,28 +219,28 @@ public class Main extends Application {
         imageView2.setRotate(180);
 
         //if (shouldStartTimeline()) {
-            Timeline timeline2 = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
-                // Bewege das ImageView nach rechts
-                imageView2.setLayoutX(imageView2.getLayoutX() - MOVE_DISTANCE);
+        Timeline timeline2 = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
+            // Bewege das ImageView nach rechts
+            imageView2.setLayoutX(imageView2.getLayoutX() - MOVE_DISTANCE);
 
-                // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
-                if (imageView2.getLayoutX() == 0) {
-                    imageView2.setLayoutX(1920);
-                }
-            }));
-            timeline2.setCycleCount(Timeline.INDEFINITE);
-            timeline2.play();
+            // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
+            if (imageView2.getLayoutX() == 0) {
+                imageView2.setLayoutX(1920);
+            }
+        }));
+        timeline2.setCycleCount(Timeline.INDEFINITE);
+        timeline2.play();
 
-            circle2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                MouseButton mouseButton = event.getButton();
-                if (mouseButton == MouseButton.PRIMARY) {
-                    circle2.setFill(Color.RED);
-                    timeline2.stop();
-                } else if (mouseButton == MouseButton.SECONDARY) {
-                    circle2.setFill(Color.GREEN);
-                    timeline2.play();
-                }
-            });
+        circle2.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            MouseButton mouseButton = event.getButton();
+            if (mouseButton == MouseButton.PRIMARY) {
+                circle2.setFill(Color.RED);
+                timeline2.stop();
+            } else if (mouseButton == MouseButton.SECONDARY) {
+                circle2.setFill(Color.GREEN);
+                timeline2.play();
+            }
+        });
         //}
     }
 
@@ -272,16 +249,16 @@ public class Main extends Application {
         if (istRot1) {
             startTimeline = false;
         }
-        if(!istRot1){
-            startTimeline =true;
+        if (!istRot1) {
+            startTimeline = true;
         }
 
 
         return startTimeline;
     }
 
-    private void haltStop(){
-        if(istRot1){
+    private void haltStop() {
+        if (istRot1) {
             timeline.stop();
         }
     }
@@ -328,7 +305,6 @@ public class Main extends Application {
 //
 //
 //        }
-
 
 
     public static void main(String[] args) {
