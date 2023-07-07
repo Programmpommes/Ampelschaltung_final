@@ -1,3 +1,5 @@
+package com.example.ampelschaltung_final;
+
 import java.sql.*;
 public class Highscore{
     Connection con;
