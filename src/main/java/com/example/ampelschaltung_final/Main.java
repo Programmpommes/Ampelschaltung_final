@@ -19,6 +19,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -41,11 +44,22 @@ public class Main extends Application {
     private ImageView imageView4;
     Circle circle = new Circle(20, Color.GREEN);
     Circle circle2 = new Circle(20, Color.GREEN);
+    Random auto = new Random();
+    List<String> imagePaths = new ArrayList<>();
+
 
 
     @Override
 
     public void start(Stage primaryStage) {
+
+        imagePaths.add("aston-martin-amr22.jpg");
+        imagePaths.add("bmw.jpg");
+        imagePaths.add("bugatti.jpg");
+        imagePaths.add("Ferrari.jpg");
+        imagePaths.add("graues Auto.jpg");
+        imagePaths.add("oldtimer.jpg");
+        imagePaths.add("opel.jpg");
 
 //        Ampel firstClass = new Ampel();
 //        firstClass.start(primaryStage);
