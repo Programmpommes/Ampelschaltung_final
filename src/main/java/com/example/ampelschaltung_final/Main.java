@@ -66,6 +66,15 @@ public class Main extends Application {
         imagePaths.add("graues Auto.jpg");
         imagePaths.add("oldtimer.jpg");
         imagePaths.add("opel.jpg");
+        imagePaths.add("cabrio.jpg");
+        imagePaths.add("dachfenster.jpg");
+        imagePaths.add("futuristisch.jpg");
+        imagePaths.add("lotus.jpg");
+        imagePaths.add("old2.png");
+        imagePaths.add("orange.png");
+        imagePaths.add("polizei.png");
+        imagePaths.add("porsche.jpg");
+        imagePaths.add("rotes Auto.jpg");
 
 
 //        Ampel firstClass = new Ampel();
