@@ -52,6 +52,8 @@ public class Main extends Application {
     String randomImagePath2;
     String randomImagePath3;
     String randomImagePath4;
+    Button stop = new Button("Beenden");
+    Button start = new Button("Starten");
 
 
 
@@ -75,6 +77,21 @@ public class Main extends Application {
         imagePaths.add("polizei.png");
         imagePaths.add("porsche.jpg");
         imagePaths.add("rotes Auto.jpg");
+
+
+        stop.setLayoutY(10);
+        stop.setLayoutX(100);
+        stop.setTranslateX(10);
+        stop.setTranslateY(10);
+
+        start.setLayoutY(10);
+        start.setLayoutX(10);
+        start.setTranslateX(10);
+        start.setTranslateY(10);
+
+        stop.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            primaryStage.close();
+            });
 
 
 //        Ampel firstClass = new Ampel();
@@ -208,6 +225,10 @@ public class Main extends Application {
         root.getChildren().add(rectangle3);
         root.getChildren().add(rectangle4);
         root.getChildren().add(rectangle5);
+        root.getChildren().add(stop);
+        root.getChildren().add(start);
+
+
 
 
         //Image image = new Image("Ferrari.jpg");
@@ -219,7 +240,7 @@ public class Main extends Application {
         imageView.setFitHeight(100);
         imageView.setPreserveRatio(true);
         root.getChildren().add(imageView);
-        startTimeline();
+
 
         //rechts nach links
         imageView2 = new ImageView();
@@ -227,7 +248,7 @@ public class Main extends Application {
         imageView2.setFitHeight(110);
         imageView2.setPreserveRatio(true);
         root.getChildren().add(imageView2);
-        startTimeline2();
+
 
         //oben nach unten
         imageView3 = new ImageView();
@@ -235,7 +256,7 @@ public class Main extends Application {
         imageView3.setFitHeight(110);
         imageView3.setPreserveRatio(true);
         root.getChildren().add(imageView3);
-        startTimeline3();
+
 
         //unten nach oben
         imageView4 = new ImageView();
@@ -243,7 +264,14 @@ public class Main extends Application {
         imageView4.setFitHeight(110);
         imageView4.setPreserveRatio(true);
         root.getChildren().add(imageView4);
-        startTimeline4();
+
+
+        start.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            startTimeline();
+            startTimeline2();
+            startTimeline3();
+            startTimeline4();
+        });
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
