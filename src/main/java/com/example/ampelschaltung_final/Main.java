@@ -17,18 +17,13 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-
 import java.io.IOException;
 
 public class Main extends Application {
