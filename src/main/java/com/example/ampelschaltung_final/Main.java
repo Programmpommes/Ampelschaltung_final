@@ -12,6 +12,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +24,10 @@ import javafx.util.Duration;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.AnimationTimer;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 
@@ -38,6 +44,8 @@ public class Main extends Application {
     Auto Audi = new Auto();
     Timeline timeline = new Timeline();
     Timeline timeline2 = new Timeline();
+    Timeline timeline3 =new Timeline();
+    Timeline timeline4 =new Timeline();
     private ImageView imageView;
     private ImageView imageView2;
     private ImageView imageView3;
@@ -52,14 +60,24 @@ public class Main extends Application {
     String randomImagePath2;
     String randomImagePath3;
     String randomImagePath4;
-    Button stop = new Button("Beenden");
+    Button stop = new Button("Spiel beenden");
     Button start = new Button("Starten");
+    private AnimationTimer timer;
+    Button pause = new Button("Pause");
+    public int punkte = 0;
+    Label label = new Label("Punkte: " + punkte);
 
 
 
     @Override
 
     public void start(Stage primaryStage) {
+
+        label.setFont(Font.font("Verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
+        label.setLayoutX(1800);
+        label.setLayoutY(10);
+
+
 
         imagePaths.add("aston-martin-amr22.jpg");
         imagePaths.add("bmw.jpg");
@@ -89,9 +107,22 @@ public class Main extends Application {
         start.setTranslateX(10);
         start.setTranslateY(10);
 
+        pause.setLayoutY(10);
+        pause.setLayoutX(200);
+        pause.setTranslateX(10);
+        pause.setTranslateY(10);
+
         stop.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             primaryStage.close();
             });
+
+        pause.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            timeline.stop();
+            timeline2.stop();
+            timeline3.stop();
+            timeline4.stop();
+            pause.setDisable(true);
+        });
 
 
 //        Ampel firstClass = new Ampel();
@@ -227,6 +258,8 @@ public class Main extends Application {
         root.getChildren().add(rectangle5);
         root.getChildren().add(stop);
         root.getChildren().add(start);
+        //root.getChildren().add(pause);
+        root.getChildren().add(label);
 
 
 
@@ -266,11 +299,19 @@ public class Main extends Application {
         root.getChildren().add(imageView4);
 
 
+        imageView.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intersects(imageView3.getBoundsInParent())) {
+                //primaryStage.close();
+            }
+        });
+
+
         start.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             startTimeline();
             startTimeline2();
             startTimeline3();
             startTimeline4();
+            start.setDisable(true);
         });
 
         Scene scene = new Scene(root);
@@ -279,6 +320,13 @@ public class Main extends Application {
         primaryStage.show();
 
     }
+
+    private void updateLabel(int value) {
+        // Aktualisiere den Wert des Labels
+        label.setText("Punkte: "+ String.valueOf(value));
+    }
+
+
 
 
     public void startTimeline() {
@@ -297,6 +345,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView.getLayoutX() > WIDTH) {
                 imageView.setLayoutX(-imageView.getFitWidth());
+                updateLabel(punkte=punkte+1);
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -332,6 +381,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView2.getLayoutX() == 0) {
                 imageView2.setLayoutX(1920);
+                updateLabel(punkte=punkte+1);
             }
         }));
         timeline2.setCycleCount(Timeline.INDEFINITE);
@@ -367,6 +417,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView3.getLayoutY() == 1150) {
                 imageView3.setLayoutY(-10);
+                updateLabel(punkte=punkte+1);
             }
         }));
         timeline3.setCycleCount(Timeline.INDEFINITE);
@@ -402,6 +453,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView4.getLayoutY() == 0) {
                 imageView4.setLayoutY(1150);
+                updateLabel(punkte=punkte+1);
             }
         }));
         timeline4.setCycleCount(Timeline.INDEFINITE);
