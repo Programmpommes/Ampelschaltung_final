@@ -18,12 +18,15 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+
 import java.io.IOException;
 
 public class Main extends Application {
@@ -39,8 +42,8 @@ public class Main extends Application {
     Auto Audi = new Auto();
     Timeline timeline = new Timeline();
     Timeline timeline2 = new Timeline();
-    Timeline timeline3 =new Timeline();
-    Timeline timeline4 =new Timeline();
+    Timeline timeline3 = new Timeline();
+    Timeline timeline4 = new Timeline();
     private ImageView imageView;
     private ImageView imageView2;
     private ImageView imageView3;
@@ -61,6 +64,8 @@ public class Main extends Application {
     Button pause = new Button("Pause");
     public int punkte = 0;
     Label label = new Label("Punkte: " + punkte);
+    Label text =new Label("Das Ziel ist es die Autos ohne Kollision über die Kreuzung zu navigieren.");
+    Label text2 = new Label("Mit Rechtsklick können sie die Ampeln auf Grün setzen, mit Linksklick auf Rot.");
 
 
 
@@ -69,9 +74,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         label.setFont(Font.font("Verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
-        label.setLayoutX(1800);
+        label.setLayoutX(1750);
         label.setLayoutY(10);
-
+        text.setFont(Font.font("Verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
+        text.setLayoutX(15);
+        text.setLayoutY(700);
+        text2.setFont(Font.font("Verdana", FontWeight.BLACK, FontPosture.REGULAR, 20));
+        text2.setLayoutX(15);
+        text2.setLayoutY(730);
 
 
         imagePaths.add("aston-martin-amr22.jpg");
@@ -109,7 +119,7 @@ public class Main extends Application {
 
         stop.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             primaryStage.close();
-            });
+        });
 
         pause.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             timeline.stop();
@@ -255,8 +265,8 @@ public class Main extends Application {
         root.getChildren().add(start);
         //root.getChildren().add(pause);
         root.getChildren().add(label);
-
-
+        root.getChildren().add(text);
+        root.getChildren().add(text2);
 
 
         //Image image = new Image("Ferrari.jpg");
@@ -294,11 +304,11 @@ public class Main extends Application {
         root.getChildren().add(imageView4);
 
 
-        imageView.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.intersects(imageView3.getBoundsInParent())) {
-                //primaryStage.close();
-            }
-        });
+//        imageView.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
+//            if (newValue.intersects(imageView3.getBoundsInParent())) {
+//                //primaryStage.close();
+//            }
+//        });
 
 
         start.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -318,14 +328,13 @@ public class Main extends Application {
 
     private void updateLabel(int value) {
         // Aktualisiere den Wert des Labels
-        label.setText("Punkte: "+ String.valueOf(value));
+        label.setText("Punkte: " + String.valueOf(value));
     }
-
-
 
 
     public void startTimeline() {
         randomImagePath = imagePaths.get(auto.nextInt(imagePaths.size()));
+        imagePaths.remove(randomImagePath);
         Image image = new Image(randomImagePath);
         //ImageView imageView = new ImageView(image);
         imageView.setImage(image);
@@ -340,7 +349,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView.getLayoutX() > WIDTH) {
                 imageView.setLayoutX(-imageView.getFitWidth());
-                updateLabel(punkte=punkte+1);
+                updateLabel(punkte = punkte + 1);
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -361,6 +370,7 @@ public class Main extends Application {
 
     public void startTimeline2() {
         randomImagePath2 = imagePaths.get(auto.nextInt(imagePaths.size()));
+        imagePaths.remove(randomImagePath2);
         Image image2 = new Image(randomImagePath2);
         //ImageView imageView = new ImageView(image);
         imageView2.setImage(image2);
@@ -376,7 +386,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView2.getLayoutX() == 0) {
                 imageView2.setLayoutX(1920);
-                updateLabel(punkte=punkte+1);
+                updateLabel(punkte = punkte + 1);
             }
         }));
         timeline2.setCycleCount(Timeline.INDEFINITE);
@@ -397,6 +407,7 @@ public class Main extends Application {
 
     public void startTimeline3() {
         randomImagePath3 = imagePaths.get(auto.nextInt(imagePaths.size()));
+        imagePaths.remove(randomImagePath3);
         Image image3 = new Image(randomImagePath3);
         //ImageView imageView = new ImageView(image);
         imageView3.setImage(image3);
@@ -412,7 +423,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView3.getLayoutY() == 1150) {
                 imageView3.setLayoutY(-10);
-                updateLabel(punkte=punkte+1);
+                updateLabel(punkte = punkte + 1);
             }
         }));
         timeline3.setCycleCount(Timeline.INDEFINITE);
@@ -433,6 +444,7 @@ public class Main extends Application {
 
     public void startTimeline4() {
         randomImagePath4 = imagePaths.get(auto.nextInt(imagePaths.size()));
+        imagePaths.remove(randomImagePath4);
         Image image4 = new Image(randomImagePath4);
         //ImageView imageView = new ImageView(image);
         imageView4.setImage(image4);
@@ -448,7 +460,7 @@ public class Main extends Application {
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
             if (imageView4.getLayoutY() == 0) {
                 imageView4.setLayoutY(1150);
-                updateLabel(punkte=punkte+1);
+                updateLabel(punkte = punkte + 1);
             }
         }));
         timeline4.setCycleCount(Timeline.INDEFINITE);
