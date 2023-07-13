@@ -64,9 +64,8 @@ public class Main extends Application {
     Button pause = new Button("Pause");
     public int punkte = 0;
     Label label = new Label("Punkte: " + punkte);
-    Label text =new Label("Das Ziel ist es die Autos ohne Kollision über die Kreuzung zu navigieren.");
+    Label text = new Label("Das Ziel ist es die Autos ohne Kollision über die Kreuzung zu navigieren.");
     Label text2 = new Label("Mit Rechtsklick können sie die Ampeln auf Grün setzen, mit Linksklick auf Rot.");
-
 
 
     @Override
@@ -196,11 +195,11 @@ public class Main extends Application {
         rectangle5.setY(445);
         rectangle5.setFill(Color.GREY);
 
-        circle.setTranslateX(800);
-        circle.setTranslateY(400);
+        circle.setTranslateX(850);
+        circle.setTranslateY(600);
 
-        circle2.setLayoutX(1100);
-        circle2.setLayoutY(600);
+        circle2.setLayoutX(1050);
+        circle2.setLayoutY(400);
 
         circle3.setLayoutX(850);
         circle3.setLayoutY(400);
@@ -324,6 +323,13 @@ public class Main extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
+
+
+        //WARNUNG!!!! Dieser Code bringt das Spiel zum abstürzen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        while(scene.getWindow().isShowing()==true){
+//            checkCollision(imageView, imageView2);
+//        }
+
     }
 
     private void updateLabel(int value) {
@@ -339,7 +345,7 @@ public class Main extends Application {
         //ImageView imageView = new ImageView(image);
         imageView.setImage(image);
         imageView.setLayoutX(0);
-        imageView.setLayoutY(450);
+        imageView.setLayoutY(505);
 
         //if (shouldStartTimeline()) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(MOVE_INTERVAL_MS), event -> {
@@ -347,8 +353,8 @@ public class Main extends Application {
             imageView.setLayoutX(imageView.getLayoutX() + MOVE_DISTANCE);
 
             // Überprüfe, ob das ImageView den rechten Rand erreicht hat, und setze es zurück auf den linken Rand
-            if (imageView.getLayoutX() > WIDTH) {
-                imageView.setLayoutX(-imageView.getFitWidth());
+            if (imageView.getLayoutX() == 1920) {
+                imageView.setLayoutX(0);
                 updateLabel(punkte = punkte + 1);
             }
         }));
@@ -359,7 +365,13 @@ public class Main extends Application {
             MouseButton mouseButton = event.getButton();
             if (mouseButton == MouseButton.PRIMARY) {
                 circle.setFill(Color.RED);
-                timeline.stop();
+                //timeline.stop();
+                if (imageView.getLayoutX() >= 550 && imageView.getLayoutX() <= 800) {
+                    // timeline.stop();
+                    if (circle.getFill() == Color.RED) {
+                        timeline.stop();
+                    }
+                }
             } else if (mouseButton == MouseButton.SECONDARY) {
                 circle.setFill(Color.GREEN);
                 timeline.play();
@@ -368,6 +380,7 @@ public class Main extends Application {
         //}
     }
 
+
     public void startTimeline2() {
         randomImagePath2 = imagePaths.get(auto.nextInt(imagePaths.size()));
         imagePaths.remove(randomImagePath2);
@@ -375,7 +388,7 @@ public class Main extends Application {
         //ImageView imageView = new ImageView(image);
         imageView2.setImage(image2);
         imageView2.setLayoutX(1920);
-        imageView2.setLayoutY(505);
+        imageView2.setLayoutY(450);
         imageView2.setRotate(180);
 
         //if (shouldStartTimeline()) {
@@ -396,7 +409,12 @@ public class Main extends Application {
             MouseButton mouseButton = event.getButton();
             if (mouseButton == MouseButton.PRIMARY) {
                 circle2.setFill(Color.RED);
-                timeline2.stop();
+                if (imageView2.getLayoutX() >= 1050 && imageView2.getLayoutX() <= 1300) {
+                    // timeline.stop();
+                    if (circle2.getFill() == Color.RED) {
+                        timeline2.stop();
+                    }
+                }
             } else if (mouseButton == MouseButton.SECONDARY) {
                 circle2.setFill(Color.GREEN);
                 timeline2.play();
@@ -433,7 +451,11 @@ public class Main extends Application {
             MouseButton mouseButton = event.getButton();
             if (mouseButton == MouseButton.PRIMARY) {
                 circle3.setFill(Color.RED);
-                timeline3.stop();
+                if (imageView3.getLayoutY() >= 100 && imageView3.getLayoutY() <= 350) {
+                    if (circle3.getFill() == Color.RED) {
+                        timeline3.stop();
+                    }
+                }
             } else if (mouseButton == MouseButton.SECONDARY) {
                 circle3.setFill(Color.GREEN);
                 timeline3.play();
@@ -470,7 +492,11 @@ public class Main extends Application {
             MouseButton mouseButton = event.getButton();
             if (mouseButton == MouseButton.PRIMARY) {
                 circle4.setFill(Color.RED);
-                timeline4.stop();
+                if (imageView4.getLayoutY() >= 450 && imageView4.getLayoutY() <= 700) {
+                    if (circle4.getFill() == Color.RED) {
+                        timeline4.stop();
+                    }
+                }
             } else if (mouseButton == MouseButton.SECONDARY) {
                 circle4.setFill(Color.GREEN);
                 timeline4.play();
@@ -491,6 +517,26 @@ public class Main extends Application {
 
         return startTimeline;
     }
+
+    public void checkCollision(ImageView imageView, ImageView imageView2){
+        if(imageView.getBoundsInParent().intersects(imageView2.getBoundsInParent())){
+            System.out.println("Boom");
+        }
+    }
+
+//    public void collisionCheckThread()
+//    {
+//        collisionThread = new Thread(){
+//            @Override
+//            public void run(){
+//                while(scene.getWindow().isShowing() == true){
+//                    checkCollision(wolfIv,eggsList.get(0));
+//                }
+//
+//            }
+//        };
+//        collisionThread.start();
+//    }
 
     private void haltStop() {
         if (istRot1) {
