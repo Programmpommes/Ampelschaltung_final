@@ -3,6 +3,7 @@ package com.example.ampelschaltung_final;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,6 +19,13 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.Random;
 import java.util.ArrayList;
@@ -28,6 +36,8 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+
+import static java.time.Clock.tick;
 
 public class Main extends Application {
     Boolean istRot1 = false;
@@ -66,6 +76,7 @@ public class Main extends Application {
     Label label = new Label("Punkte: " + punkte);
     Label text = new Label("Das Ziel ist es die Autos ohne Kollision über die Kreuzung zu navigieren.");
     Label text2 = new Label("Mit Rechtsklick können sie die Ampeln auf Grün setzen, mit Linksklick auf Rot.");
+    public int tick = 0;
 
 
     @Override
@@ -127,6 +138,27 @@ public class Main extends Application {
             timeline4.stop();
             pause.setDisable(true);
         });
+
+
+
+
+//        new AnimationTimer() {
+//            long lastTick = 0;
+//
+//            public void handle(long now) {
+//                if (lastTick == 0) {
+//                    lastTick = now;
+//                    tick(gc);
+//                    return;
+//                }
+//
+//                if (now - lastTick > 1000000000 / speed) {
+//                    lastTick = now;
+//                    tick(gc);
+//                }
+//            }
+//
+//        }.start();
 
 
 //        Ampel firstClass = new Ampel();
@@ -302,6 +334,38 @@ public class Main extends Application {
         imageView4.setPreserveRatio(true);
         root.getChildren().add(imageView4);
 
+        Thread collisionThread = new Thread(this::checkCollision);
+        collisionThread.setDaemon(true);
+        collisionThread.start();
+
+//        AnimationTimer timer = new AnimationTimer() {
+//            private long lastTick = 0;
+//            private final long interval = 1;
+//
+//
+//            public void handle(long now) {
+//                if (now - lastTick >= interval) {
+//                    tick++;
+//                    System.out.println("Tick: " + tick);
+//                    //checkCollision();
+////                    if(imageView.getBoundsInParent().intersects(imageView3.getBoundsInParent())){
+////                        System.out.println("Boom");
+////                        //primaryStage.close();
+////                    }
+//                    primaryStage.sceneProperty().addListener((obs, oldScene, newScene) -> {
+//                        newScene.setOnKeyPressed(event -> {
+//                            if (doImageViewsCollide()) {
+//                                System.out.println("Die ImageViews berühren sich!");
+//                                // Hier kannst du den Code platzieren, der ausgeführt werden soll, wenn sich die ImageViews berühren
+//                                primaryStage.close();
+//                            }
+//                        });
+//                    });
+//                    lastTick = now;
+//                }
+//            }
+//        };
+
 
 //        imageView.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
 //            if (newValue.intersects(imageView3.getBoundsInParent())) {
@@ -322,6 +386,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+        //timer.start();
 
 
 
@@ -336,6 +401,8 @@ public class Main extends Application {
         // Aktualisiere den Wert des Labels
         label.setText("Punkte: " + String.valueOf(value));
     }
+
+
 
 
     public void startTimeline() {
@@ -518,9 +585,55 @@ public class Main extends Application {
         return startTimeline;
     }
 
-    public void checkCollision(ImageView imageView, ImageView imageView2){
-        if(imageView.getBoundsInParent().intersects(imageView2.getBoundsInParent())){
-            System.out.println("Boom");
+    public void timer(){
+
+    }
+
+//    public void checkCollision(){
+//        if(imageView.getBoundsInParent().intersects(imageView3.getBoundsInParent())){
+//            System.out.println("Boom");
+//
+//        }
+//
+//
+//    }
+
+    private void checkCollision() {
+        while (true) {
+            if (doImageViewsCollide()) {
+                Platform.runLater(() -> {
+                    System.out.println("Die ImageViews berühren sich!");
+                    // Hier kannst du den Code platzieren, der ausgeführt werden soll, wenn sich die ImageViews berühren
+                });
+            }
+
+            try {
+                Thread.sleep(100); // Überprüfe alle 100 Millisekunden
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean doImageViewsCollide() {
+        double imageViewX = imageView.getLayoutX();
+        double imageViewY = imageView.getLayoutY();
+        double imageViewWidth = imageView.getBoundsInParent().getWidth();
+        double imageViewHeight = imageView.getBoundsInParent().getHeight();
+
+        double imageView3X = imageView3.getLayoutX();
+        double imageView3Y = imageView3.getLayoutY();
+        double imageView3Width = imageView3.getBoundsInParent().getWidth();
+        double imageView3Height = imageView3.getBoundsInParent().getHeight();
+
+        // Überprüfe die Kollision der Bounding Boxes
+        if (imageViewX < imageView3X + imageView3Width &&
+                imageViewX + imageViewWidth > imageView3X &&
+                imageViewY < imageView3Y + imageView3Height &&
+                imageViewY + imageViewHeight > imageView3Y) {
+            return true; // Kollision
+        } else {
+            return false; // Keine Kollision
         }
     }
 
